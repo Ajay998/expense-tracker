@@ -1,6 +1,6 @@
 import mysql.connector
 from contextlib import contextmanager
-from logging_setup import setup_logger
+from .logging_setup import setup_logger
 
 
 logger = setup_logger('db_helper')
@@ -63,6 +63,8 @@ def fetch_expense_summary(start_date, end_date):
 if __name__ == "__main__":
     expenses = fetch_expenses_for_date("2024-09-30")
     print(expenses)
+    # insert_expense("2024-09-30", 100, "Food", "Lunch at restaurant")
+    # fetch_expenses_for_date("2024-09-30")
     # delete_expenses_for_date("2024-08-25")
     summary = fetch_expense_summary("2024-08-01", "2024-08-05")
     for record in summary:
