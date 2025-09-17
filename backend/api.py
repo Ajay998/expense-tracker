@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from datetime import date, datetime
+from datetime import date
 from typing import List
 from pydantic import BaseModel
 from backend.db_helper import fetch_expenses_for_date, insert_expense, delete_expenses_for_date
