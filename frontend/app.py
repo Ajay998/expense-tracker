@@ -1,9 +1,9 @@
 import streamlit as st
-from add_update_ui import add_update_tab
+from add_update_expenses import add_update_tab
 from analytics_by_category import analytics_by_category_tab
-from analytics_by_month import analytics_months_tab
-from saved_expense_ui import saved_expense_tab
-from expense_breakdown_ui import expense_breakdown_tab
+from analytics_by_months import analytics_months_tab
+from saved_expense import saved_expense_tab
+from expense_breakdown import expense_breakdown_tab
 
 st.set_page_config(
     page_title="Expense Tracker",
