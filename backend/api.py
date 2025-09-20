@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from datetime import date
 from typing import List
 from pydantic import BaseModel
-from backend.db_helper import fetch_expenses_for_date, insert_expense, delete_expenses_for_date ,fetch_expense_summary
+from backend.db_helper import fetch_expenses_for_date, insert_expense, fetch_monthly_expense_summary ,fetch_expense_summary
 app = FastAPI()
 
 class Expense(BaseModel):
@@ -44,3 +44,11 @@ def get_analytics(date_range: DateRange):
         }
 
     return breakdown
+
+@app.get("/monthly_summary/")
+def get_analytics():
+    monthly_summary = fetch_monthly_expense_summary()
+    if monthly_summary is None:
+        raise HTTPException(status_code=500, detail="Failed to retrieve monthly expense summary.")
+
+    return monthly_summary

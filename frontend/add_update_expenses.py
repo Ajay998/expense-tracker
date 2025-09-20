@@ -6,21 +6,6 @@ API_URL = "http://localhost:8000"  # Update to production URL if needed
 CATEGORIES = ["Rent", "Food", "Shopping", "Entertainment", "Other"]
 MAX_ENTRIES = 5
 
-# Page config
-st.set_page_config(
-    page_title="Expense Tracker",
-    page_icon="💼",
-    layout="centered"
-)
-
-# Sidebar branding
-with st.sidebar:
-    st.markdown("## 💼 Expense Tracker")
-    st.markdown("Track your daily spending with ease.")
-    st.markdown("---")
-    st.markdown("📅 Select a date and enter your expenses.")
-    st.markdown("🔒 Your data is private and secure.")
-
 def fetch_expenses(date):
     """Fetch expenses from API."""
     try:
@@ -50,6 +35,7 @@ def add_update_tab():
         """,
         help="Use this tool to record and review your daily spending."
     )
+
     selected_date = st.date_input(
         "📅 Select Date",
         datetime(2024, 8, 1),
@@ -105,17 +91,7 @@ def add_update_tab():
                 else:
                     save_expenses(selected_date, filtered)
 
-    if existing_expenses:
-        st.subheader("📊 Saved Expenses")
-        st.dataframe(existing_expenses, use_container_width=True, hide_index=True)
 
-        # Optional: Add a chart for visual summary
-        category_totals = {}
-        for e in existing_expenses:
-            category_totals[e["category"]] = category_totals.get(e["category"], 0) + e["amount"]
+    
 
-        st.markdown("### 📈 Expense Breakdown")
-        st.bar_chart(category_totals)
-    
-    
 
